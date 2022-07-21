@@ -1,0 +1,24 @@
+{
+  "name": "node_httprequests",
+  "version": "1.0.0",
+  "description": "Http Requests using AJAX + Node js",
+  "main": "index.js",
+  "scripts": {
+    "test": "startTest",
+    "install-windows-service":"node zInstall.js",
+    "uninstall-windows-service":"node zUninstall.js"
+  },
+  "author": "MSC",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.22.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "ini": "^2.0.0",
+    "node-windows": "^1.0.0-beta.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13"
+  }
+}
