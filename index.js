@@ -27,7 +27,7 @@ app.use(express.json())
 
 // retorno de um json para o front end 
 app.get('/', (req, res) => {
-    return res.send('<h1 align="center">Olá, o servidor NODEJS da TM esta no ar!</h1>')
+    return res.send('<h1 align="center">Olá, o servidor NODEJS esta no ar!</h1>')
 })
 
 app.post('/contadorCell', (req, res) => {
@@ -41,7 +41,7 @@ app.post('/contadorCell', (req, res) => {
             retorno: [
                 {
                     amostra: '1111111111111',
-                    nome: 'Mateus Silva Camacho 11111111111111111111111111111111111',
+                    nome: 'João da Silva Gomes',
                     sexo: 'M',
                     idade: '14 anos',
                     prontuario: '1234567891',
@@ -90,7 +90,7 @@ app.post('/contadorCell', (req, res) => {
             retorno: [
                 {
                     amostra: '222222222222',
-                    nome: 'Gabriel Ferrari111111111111111111111111111111111111111111111',
+                    nome: 'Mariana Gabriela ',
                     sexo: 'F',
                     idade: '24 anos',
                     prontuario: '1234567891',
