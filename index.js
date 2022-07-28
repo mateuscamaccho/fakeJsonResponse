@@ -3,7 +3,7 @@ const cors = require('cors');// imporanto biblioteca cors
 const express = require('express'); // Importa o modulo express
 const app = express(); // cria uma variavel que chama a a função express
 const fs = require('fs')
-
+const axios = require('axios')
 port = 5000
 app.listen(port); // faz com que o servidor node seja executado na porta 3000.... localhost:3000
 
@@ -28,6 +28,31 @@ app.use(express.json())
 // retorno de um json para o front end 
 app.get('/', (req, res) => {
     return res.send('<h1 align="center">Olá, o servidor NODEJS da TM esta no ar!</h1>')
+})
+
+app.get('/options', (req, res) => {
+    res.json(
+        {
+            "/fakereturn": {
+                "tipoaceito": "POST",
+                "descricao": "Nessa URL as configurações(header e body) da requisição realizada será retornado."
+            },
+            "/contadorCell": {
+                "tipoceito": "POST",
+                "descricao": "Nessa URL envie no body a chave 'amostra' com valor 1 ou 2 e o retorno será um json com dados ficticios de pacientes com exame hemograma."
+            },
+            "/consultarcep": {
+                "tipoaceito":"POST",
+                "descricao":"Nessa URL envie no body a chave cep com o cep sem caracteres especiais e tipo com o tipo que deverá retornorar na tag dados(json ou xml)"
+            }
+        }
+    )
+})
+app.post('/fakereturn', (req, res) => {
+    return res.json({
+        headers: req.headers,
+        body: req.body
+    })
 })
 
 app.post('/contadorCell', (req, res) => {
@@ -135,4 +160,31 @@ app.post('/contadorCell', (req, res) => {
     }
 
 
+})
+
+app.post('/consultarcep', (req, res) => {
+    console.log(req.body.tipo)
+    if (req.body.cep.trim() == "") {
+        res.json({
+            mensagem: "CEP em branco, verifique e refaça a requisição!"
+        })
+    } else if (req.body.tipo == 'xml' || req.body.tipo == 'json') {
+        axios({
+            method: "get",
+            url: "https://viacep.com.br/ws/" + req.body.cep + "/" + req.body.tipo + "/"
+            // responseType: "JSON",
+        }).then(function (response) {
+            console.log(response)
+            return res.json({
+                mensagem: "Sucesso na consulta!",
+                data: response.data
+            })
+        });
+
+    } else {
+        res.json({
+            mensagem: "Tipo não permitido, tente json ou xml"
+        })
+
+    }
 })
