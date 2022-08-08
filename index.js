@@ -3,7 +3,8 @@ const cors = require('cors');// imporanto biblioteca cors
 const express = require('express'); // Importa o modulo express
 const app = express(); // cria uma variavel que chama a a função express
 const fs = require('fs')
-const axios = require('axios')
+const axios = require('axios');
+
 port = 5000
 app.listen(port); // faz com que o servidor node seja executado na porta 3000.... localhost:3000
 
@@ -42,12 +43,23 @@ app.get('/options', (req, res) => {
                 "descricao": "Nessa URL envie no body a chave 'amostra' com valor 1 ou 2 e o retorno será um json com dados ficticios de pacientes com exame hemograma."
             },
             "/consultarcep": {
-                "tipoaceito":"POST",
-                "descricao":"Nessa URL envie no body a chave cep com o cep sem caracteres especiais e tipo com o tipo que deverá retornorar na tag dados(json ou xml)"
+                "tipoaceito": "POST",
+                "descricao": "Nessa URL envie no body a chave cep com o cep sem caracteres especiais e tipo com o tipo que deverá retornorar na tag dados(json ou xml)"
             }
         }
     )
 })
+app.get('/fakereturn', (req, res) => {
+    return res.json({
+        item1: "Aqui é uma string qualquer!",
+        item2: {
+            subitem1: "Aqui é um json dentro do json de retorno",
+            subitem2: "Outra frase qualquer!"
+        },
+        item3: ["aqui é um array!", "frase array 1", "frase array 2", "frase array 3", "frase array 4"]
+    })
+})
+
 app.post('/fakereturn', (req, res) => {
     return res.json({
         headers: req.headers,
