@@ -51,7 +51,7 @@ Inicie o servidor
 - **nodemon**: 2.0.22 
 - **express-rate-limit:** 6.7.0  
 
-**Versionamento:** GIT e Gitlab
+**Versionamento:** GIT e Github
 
 
 
